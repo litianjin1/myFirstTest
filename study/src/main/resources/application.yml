@@ -1,0 +1,9 @@
+eureka:
+  instance:
+    hostname: study-service
+    prefer-ip-address: true
+  client: # 服务提供者provider注册金eureka服务列表内
+    service-url:
+      register-with-eureka: true
+      fetch-registry: true
+      defaultZone: http://127.0.0.1:8099/eureka/
