@@ -1,5 +1,7 @@
+
+
 server:
-  port: 8093
+  port: 8091
 spring:
   application:
     name: gateway-service
@@ -34,4 +36,4 @@ eureka:
     service-url:
       register-with-eureka: true
       fetch-registry: true
-      defaultZone: http://127.0.0.1:8099/eureka/
+      defaultZone: http://127.0.0.1:8090/eureka/
