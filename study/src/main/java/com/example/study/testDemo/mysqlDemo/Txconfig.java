@@ -1,4 +1,4 @@
-package com.example.study.txconfig;
+package com.example.study.testDemo.mysqlDemo;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,7 +12,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.beans.PropertyVetoException;
 
 /**
  *  环境搭建：
@@ -25,7 +24,7 @@ import java.beans.PropertyVetoException;
  *     @Bean
  *     public PlatformTransactionManager transactionManager() throws Exception {
  */
-@ComponentScan("com.example.study.txconfig")
+@ComponentScan("com.example.study.testDemo.mysqlDemo")
 @Configuration
 @PropertySource("classpath:/dbconfig.properties")
 @EnableTransactionManagement

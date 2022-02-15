@@ -1,4 +1,4 @@
-package com.example.study.txconfig;
+package com.example.study.testDemo.mysqlDemo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserService {
 
-    @Autowired
+    @Autowired(required = false)
     private UserMapper userMapper;
 
     @Transactional

@@ -18,7 +18,7 @@ public class Myiterator {
     public static<E> void  generics(E s){
 
         String s1 = s.getClass().toString();
-        System.out.println(s1);
+        System.out.println("generics{}"+s1);
     }
 
     public static void  iteratorList(){
@@ -48,7 +48,6 @@ public class Myiterator {
         HashMap<String, String> cloneMap = (HashMap<String, String>)((HashMap<String, String>) map).clone();
 
         System.out.println("集合克隆，hashMap有克隆方法{}"+cloneMap);
-
         //遍历key,取值
         Set<String> keySet = map.keySet();
         System.out.println("keySet");

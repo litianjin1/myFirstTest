@@ -1,9 +1,7 @@
 package com.example.study.mainTest;
 
-import com.example.study.config.MainConfig;
-import com.example.study.facade.User;
-import com.example.study.txconfig.Txconfig;
-import com.example.study.txconfig.UserService;
+import com.example.study.testDemo.mysqlDemo.Txconfig;
+import com.example.study.testDemo.mysqlDemo.UserService;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

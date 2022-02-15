@@ -1,9 +1,13 @@
 package com.example.study.config;
 
 
+import com.example.study.condition.MyTypeFilter;
 import com.example.study.condition.WindowsCondition;
 import com.example.study.facade.User;
 import org.springframework.context.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  * 导入组件的方式 1、扫描包路径，扫描标注解 @Controller，@Component,@service,@repository
@@ -18,14 +22,24 @@ import org.springframework.context.annotation.*;
  *
  */
 @Configuration
-@ComponentScan(value = "com.example.study")
+//@ComponentScan(value = "com.example.study",includeFilters = {
+//        @ComponentScan.Filter(type = FilterType.ANNOTATION,classes = {Controller.class, Service.class, Repository.class})
+//},useDefaultFilters=false)
+@ComponentScans({
+//        @ComponentScan(value = "com.example.study.service",includeFilters = {
+//                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,classes = {MyTypeFilter.class})
+//        },useDefaultFilters=false),
+        @ComponentScan(value = "com.example.study.service",includeFilters = {
+                @ComponentScan.Filter(type = FilterType.CUSTOM,classes = {MyTypeFilter.class})
+        },useDefaultFilters = false)
+})
 public class MainConfig {
 
     @Conditional({WindowsCondition.class})
     @Lazy
     @Scope("singleton")
 //    @Scope("prototype")
-    @Bean("hello")
+    @Bean("user_hello")
     public User user(){
         return new User("user_name","user_id");
     }

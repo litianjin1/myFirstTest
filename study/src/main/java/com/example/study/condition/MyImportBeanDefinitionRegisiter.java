@@ -17,6 +17,7 @@ public class MyImportBeanDefinitionRegisiter implements ImportBeanDefinitionRegi
      */
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
+
         boolean roleVO = registry.containsBeanDefinition("com.example.study.facade.RoleVO");
         if(roleVO){
             //指定bean的定义信息

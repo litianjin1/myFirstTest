@@ -16,10 +16,11 @@ public class MainTest {
 //        System.out.println(user);
 //        RoleServiceExtendImpl hello = (RoleServiceExtendImpl)annotationConfigApplicationContext.getBean(RoleServiceExtendImpl.class);
 //        hello.goodDefault();
-/*        String[] beanDefinitionNames = annotationConfigApplicationContext.getBeanDefinitionNames();
+        String[] beanDefinitionNames = annotationConfigApplicationContext.getBeanDefinitionNames();
         for (String beanDefinitionName : beanDefinitionNames) {
             System.out.println(beanDefinitionName);
-        }*/
+        }
+        annotationConfigApplicationContext.close();
     }
 
 

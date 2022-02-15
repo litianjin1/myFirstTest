@@ -1,4 +1,4 @@
-package com.example.study.threads;
+package com.example.study.testDemo.threads;
 
 public class RunnableDemo implements Runnable{
     private Thread thread;
