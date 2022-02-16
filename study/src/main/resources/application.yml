@@ -32,7 +32,7 @@ spring:
 
   ###########【Kafka集群】###########
   kafka:
-    bootstrap-servers: 123.57.237.20:9092,123.57.237.20:9093
+    bootstrap-servers: 123.57.237.20:9092,123.57.237.20:9093,123.57.237.20:9094
     ###########【初始化消费者配置】###########
     consumer:
       auto:
@@ -60,8 +60,8 @@ spring:
     listener:
       missing-topics-fatal: false # 消费端监听的topic不存在时，项目启动会报错(关掉)
 #      type: batch # 设置批量消费
-    # 当生产端积累的消息达到batch-size或接收到消息linger.ms后,生产者就会将消息提交给kafka
-    # linger.ms为0表示每接收到一条消息就提交给kafka,这时候batch-size其实就没用了
+# 当生产端积累的消息达到batch-size或接收到消息linger.ms后,生产者就会将消息提交给kafka
+# linger.ms为0表示每接收到一条消息就提交给kafka,这时候batch-size其实就没用了
     producer:
       acks: 1 # 应答级别:多少个分区副本备份完成时向生产者发送ack确认(可选0、1、all/-1)
       batch-size: 16384  # 批量大小
@@ -72,9 +72,15 @@ spring:
         linger:
           ms: 0 # 提交延时
 #        partitioner:
-#          class: com.felix.kafka.producer.CustomizePartitioner # 自定义分区器
+#          class: com.example.study.testDemo.kafkaDemo.CustomizePartitioner # 自定义分区器
       retries: 0 # 重试次数
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      transaction-id-prefix: kafka-tran # 设置事务前缀
+      isolation:
+        level: read_committed
+      enable:
+        auto:
+          commit: false
 
 eureka:
   instance:
