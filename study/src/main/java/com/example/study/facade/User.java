@@ -1,13 +1,14 @@
 package com.example.study.facade;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Clob;
 import java.sql.Timestamp;
 
-
+//@ConfigurationProperties(prefix = "")
 public class User implements Serializable,Cloneable {
     private static final long serialVersionUID = -7844477292141647011L;
     //使用@Value赋值：

@@ -3,7 +3,9 @@ package com.example.study.config;
 
 import com.example.study.condition.MyTypeFilter;
 import com.example.study.condition.WindowsCondition;
+import com.example.study.facade.Car;
 import com.example.study.facade.User;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -33,6 +35,7 @@ import org.springframework.stereotype.Service;
                 @ComponentScan.Filter(type = FilterType.CUSTOM,classes = {MyTypeFilter.class})
         },useDefaultFilters = false)
 })
+//@EnableConfigurationProperties({User.class, Car.class})
 public class MainConfig {
 
     @Conditional({WindowsCondition.class})

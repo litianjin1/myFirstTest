@@ -92,12 +92,20 @@
             <scope>test</scope>
         </dependency>
 
+        <!--简化Javabean开发-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
 
+
+        <!--热部署 ctrl+F9 ，不用每次都重启整个项目-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <!--版本的jar包就有两种判断途径：

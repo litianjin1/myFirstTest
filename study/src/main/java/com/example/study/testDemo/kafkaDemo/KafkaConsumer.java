@@ -67,13 +67,13 @@ public class KafkaConsumer {
      *      这种情况，因为开启了批量消费，所以首先要排除掉代码中单个消费的监听，这个报错不是批量消费爆出的错，是监听开启批量后，单个消费报的错。
      * @param records
      */
-/*    @KafkaListener(id = "consumer2",groupId = "defaultConsumerGroup", topics = "topic1")
+    @KafkaListener(id = "consumer2",groupId = "defaultConsumerGroup", topics = "topic1")
     public void onMessage3(List<ConsumerRecord<?, ?>> records) {
         System.out.println(">>>批量消费一次，records.size()="+records.size());
         for (ConsumerRecord<?, ?> record : records) {
             System.out.println(record.value());
         }
-    }*/
+    }
 
 //========================================  消费异常处理 Start ================================================================
     /**

@@ -1,5 +1,8 @@
 package com.example.study.facade;
 
+import lombok.Data;
+
+@Data
 public class Color {
 
     public Color(){

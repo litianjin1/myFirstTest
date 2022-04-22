@@ -29,7 +29,9 @@ spring:
         max-wait: -1ms      # 连接池最大阻塞等待时间（使用负值表示没有限制）
         max-idle: 10      # 连接池中的最大空闲连接
         min-idle: 5       # 连接池中的最小空闲连接
-
+  banner:
+    image:
+      location: classpath:222.jpg
   ###########【Kafka集群】###########
   kafka:
     bootstrap-servers: 123.57.237.20:9092,123.57.237.20:9093,123.57.237.20:9094
@@ -91,6 +93,5 @@ eureka:
       register-with-eureka: true
       fetch-registry: true
       defaultZone: http://127.0.0.1:8090/eureka/
-
 
 
