@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-@PropertySource(value = {"classpath:pro.properties"})
-@Configuration
-@MapperScan("com.example.study.mapper")
+//@PropertySource(value = {"classpath:pro.properties"})
+//@Configuration
+//@MapperScan("com.example.study.mapper")
 public class MainConfigPropertyValue {
 
     @Bean

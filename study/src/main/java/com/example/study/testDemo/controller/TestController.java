@@ -1,7 +1,7 @@
 package com.example.study.testDemo.controller;
 
-import com.example.study.testDemo.aspectDemo.AspectInteface;
 import com.example.study.facade.User;
+import com.example.study.testDemo.aspectDemo.AspectInteface;
 import com.example.study.testDemo.listenerModel.listenerEvent.event.MyEvent;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,13 +18,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 @Api
 @Slf4j
 @RestController
-@RequestMapping("/hello")
+@RequestMapping("/test")
 @PropertySource({"classpath:/pro.properties"})
-public class HelloWorldCntroller {
+public class TestController {
     @Autowired
     private ApplicationContext applicationContext;
 
@@ -34,36 +38,50 @@ public class HelloWorldCntroller {
 
     @GetMapping("/info")
     public String getUser(@RequestParam(value = "str") String str){
-//        Object s = redisTemplate.opsForValue().get("s");
+        redisTemplate.opsForValue().set("s","sssss");
+        Object s = redisTemplate.opsForValue().get("s");
+         redisTemplate.opsForValue().increment("viewNum");
         //加上@Async注解，可以开启异步事件，多线程处理 ；否则默认同步阻塞处理事件的
         for (int i = 0; i < 5; i++) {
             applicationContext.publishEvent(new MyEvent(this,"第"+i+"次， 你啊飒飒好啊啊！！！"));
 
         }
         applicationContext.publishEvent(new MyEvent(this,"你好世界！！！"));
-        return "收到:";
+
+        redisTemplate.opsForValue().decrement("viewNum",11);
+
+        String name = redisTemplate.opsForValue().get("name", 3, 5);
+        List<Object> objects = redisTemplate.opsForValue().multiGet(new ArrayList<String>() {{
+            add("name");
+            add("viewNum");
+        }});
+        Object viewNum = redisTemplate.opsForValue().get("viewNum");
+        return "收到:"+str +" 访问查看次数 ："+viewNum +" ; 截取："+name;
     }
 
-    @Value("${book.name}")
-    public String bookvalue;
 
-    @PostConstruct
-    public void init(){
-        System.out.println("bookvalue {}"+bookvalue);
-    }
+    @GetMapping("/redisList")
+    public void redisList(@RequestParam(value = "str") String key,HttpServletRequest request,HttpServletResponse response) throws Exception{
+        redisTemplate.opsForValue().setIfAbsent("viewListNum",0);
+        redisTemplate.opsForValue().increment("viewListNum");
+        //加上@Async注解，可以开启异步事件，多线程处理 ；否则默认同步阻塞处理事件的
+        for (int i = 0; i < 5; i++) {
+            applicationContext.publishEvent(new MyEvent(this,"第"+i+"次， 测试redis 的list类型数据！！！"));
 
-
-
-    @ApiOperation(value = "hello world 接口")
-    @GetMapping("/user")
-    @AspectInteface(title = "hello 世界！！！！")
-    public void getUser(@RequestParam(value = "str") String str, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        log.info("@Slf4j");
-        System.out.println("打印hello啊啊啊啊222{}"+str +"  bookvalue"+bookvalue);
+        }
+        applicationContext.publishEvent(new MyEvent(this,"时间发布 ， 你好世界！！！"));
+        redisTemplate.opsForList().leftPush("list1","mm1");
+        redisTemplate.opsForList().leftPush("list1","mm2");
+        redisTemplate.opsForList().leftPush("list1","mm3");
+        redisTemplate.opsForList().leftPush("list1","mm4");
+        redisTemplate.opsForList().leftPush("list1","mm5");
 
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
         // 获取请求行的相关信息
+        Object viewNum = redisTemplate.opsForValue().get("viewListNum");
+
+        out.println("访问参数 ："+key +"  | 访问次数："+viewNum+"<br>");
         out.println("HttpServletRequest对象获取请求行信息方法示例：<br>");
         out.println("getMethod : " + request.getMethod() + "<br>");
         out.println("getRequestURI : " + request.getRequestURI() + "<br>");
@@ -82,13 +100,11 @@ public class HelloWorldCntroller {
         out.println("getScheme : " + request.getScheme() + "<br>");
         out.println("getRequestURL : " + request.getRequestURL() + "<br>");
 
-        out.println("注册中心：eureka;网关:gateway ok {} " +str); ;
+
+        Collection<Object> list = redisTemplate.opsForList().range(key, 0, -1);
+        list.forEach((e)->  out.println("redisList => key : "+ key+" | value:"+ e + "<br>"));
+
+//        return "收到:"+key +" 访问查看redisList次数 ："+viewNum ;
     }
-//    ---------后续为了gateway来测试它，本来是要写在controller中的，这里只是为了方便测试。
 
-
-    public String testModel(@ModelAttribute("s") User user){
-        return "success";
-
-    }
 }

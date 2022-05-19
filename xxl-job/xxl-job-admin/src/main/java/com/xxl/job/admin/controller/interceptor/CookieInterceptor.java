@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
 /**
- * push cookies to model as cookieMap
+ * push cookies to listenerModel as cookieMap
  *
  * @author xuxueli 2015-12-12 18:09:04
  */

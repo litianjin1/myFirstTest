@@ -52,7 +52,7 @@ public class Swagger2Configuration {
 
     private ApiInfo apiInfo() {
         /*作者信息*/
-        Contact contact = new Contact("沃德天", "https://github.com/litianjin1/myFirstTest", "747731461@qq.com");
+        Contact contact = new Contact("沃德天", "https://github.com/litianjin1/myFirstTest", "2050402917@qq.com");
         return new ApiInfo(
                 "Swagger 测试接口文档a",
                 "Spring Boot 集成 Swagger 测试接口文档b",

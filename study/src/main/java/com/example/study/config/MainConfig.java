@@ -1,12 +1,14 @@
 package com.example.study.config;
 
 
+import com.example.study.condition.MyImportBeanDefinitionRegisiter;
+import com.example.study.condition.MyImportSelector;
 import com.example.study.condition.MyTypeFilter;
 import com.example.study.condition.WindowsCondition;
-import com.example.study.facade.Car;
-import com.example.study.facade.User;
+import com.example.study.facade.*;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.*;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -47,3 +49,8 @@ public class MainConfig {
         return new User("user_name","user_id");
     }
 }
+
+
+
+
+// ==========================================================================================================

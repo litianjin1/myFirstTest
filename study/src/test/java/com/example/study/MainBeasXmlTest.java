@@ -1,4 +1,4 @@
-package com.example.study.mainTest;
+package com.example.study;
 
 import com.example.study.config.MainConfig;
 import com.example.study.facade.User;

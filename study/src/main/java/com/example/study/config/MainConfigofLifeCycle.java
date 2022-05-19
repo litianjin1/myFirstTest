@@ -32,8 +32,8 @@ import org.springframework.context.annotation.Configuration;
  *          postProcessBeforeInitialization ：在初始化方法之前调用
  *          postProcessAfterInitialization ： 在初始化方法执行之后，才调用
  */
-@ComponentScan("com.example.study")
-@Configuration
+//@ComponentScan("com.example.study")
+//@Configuration
 public class MainConfigofLifeCycle {
 
     @Bean(initMethod ="init",destroyMethod = "destory")

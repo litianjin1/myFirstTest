@@ -20,6 +20,15 @@ public class RedisTest {
 
         @Test
         public void testRedisTemplate() {
+            // 去test里面
+            // 去test里面
+            // 去test里面
+            // 去test里面
+            // 去test里面
+            // 去test里面
+            // 去test里面
+            // 去test里面
+            // 去test里面
 //            String orderNum= "F211124";
 //            if(orderNum.startsWith("FR")){
 //                orderNum = orderNum.substring(2);

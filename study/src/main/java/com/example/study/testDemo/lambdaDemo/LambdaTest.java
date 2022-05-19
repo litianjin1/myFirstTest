@@ -3,6 +3,8 @@ package com.example.study.testDemo.lambdaDemo;
 import com.example.study.facade.Car;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -26,6 +28,14 @@ public class LambdaTest {
      */
     @Test
     public  void test() {
+
+        Integer[] integers = {12,54,63,47,85,5,96,54};
+        List<Integer> list = Arrays.asList(integers);
+        list.forEach((e) -> {
+            System.out.println(e);
+            System.out.println("=====================");
+        });
+
         //1、消费型，没有返回值。有参数
         Consumer<Integer> consumer = (e) -> {
             System.out.println(e);

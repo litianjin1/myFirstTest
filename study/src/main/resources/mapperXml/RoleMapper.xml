@@ -1,33 +1,33 @@
-<!--<?xml version="1.0" encoding="UTF-8" ?>-->
-<!--<mapper namespace="com.example.study.mapper.RoleMapper">-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapper namespace="com.example.study.mapper.RoleMapper">
 
-    <!--<insert id="addRoleMenus">-->
-        <!--insert into role_menu(role_id, menu_id) values-->
-        <!--<foreach collection="list" item="item" index="index" separator=",">-->
-            <!--(#{arg0},#{item})-->
-        <!--</foreach>-->
-    <!--</insert>-->
-    <!--<insert id="addRolePermissions">-->
-        <!--insert into role_permission(role_id, permission_id) values-->
-        <!--<foreach collection="list" item="item" index="index" separator=",">-->
-            <!--(#{arg0},#{item})-->
-        <!--</foreach>-->
-    <!--</insert>-->
-    <!--<delete id="deleteRoleMenu">-->
-        <!--delete-->
-        <!--from role_menu-->
-        <!--where role_id = #{arg0}-->
-    <!--</delete>-->
-    <!--<delete id="deleteRolePermission" parameterType="int">-->
-        <!--delete-->
-        <!--from role_permission-->
-        <!--where role_id = #{arg0}-->
-    <!--</delete>-->
-    <!--<delete id="deleteRoleUser" parameterType="int">-->
-        <!--delete-->
-        <!--from user_role-->
-        <!--where role_id = #{arg0}-->
-    <!--</delete>-->
+    <insert id="addRoleMenus">
+        insert into role_menu(role_id, menu_id) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{arg0},#{item})
+        </foreach>
+    </insert>
+    <insert id="addRolePermissions">
+        insert into role_permission(role_id, permission_id) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{arg0},#{item})
+        </foreach>
+    </insert>
+    <delete id="deleteRoleMenu">
+        delete
+        from role_menu
+        where role_id = #{arg0}
+    </delete>
+    <delete id="deleteRolePermission" parameterType="int">
+        delete
+        from role_permission
+        where role_id = #{arg0}
+    </delete>
+    <delete id="deleteRoleUser" parameterType="int">
+        delete
+        from user_role
+        where role_id = #{arg0}
+    </delete>
 
 
-<!--</mapper>-->
+</mapper>

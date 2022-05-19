@@ -28,7 +28,7 @@ import java.beans.PropertyVetoException;
  *                  2、 EmbeddedValueResolverAware 接口， 重写 setEmbeddedValueResolver ，定义 StringValueResolver，
  *                  调用  valueResolver.resolveStringValue("${db.driverClass}");；
  */
-@Configuration
+//@Configuration
 @PropertySource("classpath:/dbconfig.properties")
 //@Profile("test")
 public class MainConfigProfile implements EmbeddedValueResolverAware {

@@ -18,7 +18,7 @@ class StudyApplicationTests {
     void contextLoads() {
 
     }
-
+/*
     @Test
     void test1(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -34,5 +34,5 @@ class StudyApplicationTests {
         String s = (String) redis.opsForValue().get("template");
         System.out.println(s);
 
-    }
+    }*/
 }

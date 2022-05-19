@@ -26,6 +26,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
+
         <!--注入eureka client 依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -264,6 +265,10 @@
             <artifactId>spring-boot-test</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
         <!--websocket-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

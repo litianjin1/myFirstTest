@@ -1,5 +1,6 @@
 package com.example.study.testDemo.redis;
 
+import com.netflix.discovery.converters.Auto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+/**
+ *
+ * 单元测试不支持 spring环境，所以注入组件时，可能导致为 null
+ */
+
+@Component
 public class RedisTest {
-    @Resource
-        private  RedisTemplate redis;
+    @Autowired
+        private  RedisTemplate redisTemplate;
 
         @Test
         public void testRedisTemplate() {
@@ -27,9 +32,9 @@ public class RedisTest {
 //                orderNum = orderNum.substring(2);
 //            }
 //            System.out.println(orderNum);
-//            clientStart();
-            redis.opsForValue().set("template","成功了吗？");
-            String s = (String) redis.opsForValue().get("template");
+            clientStart();
+            redisTemplate.opsForValue().set("template","成功了吗？");
+            String s = (String) redisTemplate.opsForValue().get("template");
             System.out.println(s);
      /*
             testString();
@@ -55,7 +60,7 @@ public class RedisTest {
         //连接本地的 Redis 服务
         Jedis jedis = new Jedis("localhost");
         System.out.println("连接成功");
-        //设置 redis 字符串数据
+        //设置 redisTemplate 字符串数据
         jedis.set("runoobkey", "www.runoob.com");
         jedis.setnx("notExist","if not exist,set value");
         Boolean sss = jedis.exists("sss");
@@ -65,13 +70,13 @@ public class RedisTest {
         Long setex1 = jedis.ttl("setex");
 
         // 获取存储的数据并输出
- /*       System.out.println("redis 存储的字符串为: "+ jedis.get("runoobkey"));
-        System.out.println("redis 存储的字符串为: "+ jedis.get("notExist"));
-        System.out.println("redis 存储的字符串为: "+ sss);
-        System.out.println("redis 存储的字符串为: "+ notExist);
-        System.out.println("redis 存储的字符串为: "+ set);*/
-        System.out.println("redis 存储的字符串为: "+ setex);
-        System.out.println("redis 存储的字符串为: "+ setex1);
+ /*       System.out.println("redisTemplate 存储的字符串为: "+ jedis.get("runoobkey"));
+        System.out.println("redisTemplate 存储的字符串为: "+ jedis.get("notExist"));
+        System.out.println("redisTemplate 存储的字符串为: "+ sss);
+        System.out.println("redisTemplate 存储的字符串为: "+ notExist);
+        System.out.println("redisTemplate 存储的字符串为: "+ set);*/
+        System.out.println("redisTemplate 存储的字符串为: "+ setex);
+        System.out.println("redisTemplate 存储的字符串为: "+ setex1);
     }
 
     //Redis Java List 实例
