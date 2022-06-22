@@ -78,7 +78,7 @@
 //    }
 //
 //    private static JSONObject getRealContentByIP(String ip) {
-//        String rspStr = HttpUtils.sendPost(StringUtils.format(BAI_DU_IP_URL, ip));
+//        String rspStr = HttpURLConnectionUtil1.sendPost(StringUtils.format(BAI_DU_IP_URL, ip));
 //        if (StringUtils.isEmpty(rspStr)) {
 //            log.error("获取地理位置异常 {}", ip);
 //            return null;

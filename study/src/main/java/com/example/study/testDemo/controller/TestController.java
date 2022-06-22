@@ -18,10 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Api
 @Slf4j
@@ -75,11 +72,17 @@ public class TestController {
         redisTemplate.opsForList().leftPush("list1","mm3");
         redisTemplate.opsForList().leftPush("list1","mm4");
         redisTemplate.opsForList().leftPush("list1","mm5");
-
+        //取出集合 list1的 最后一个元素 ，放到新集合 list的 第一个元素上
+        redisTemplate.opsForList().rightPopAndLeftPush("list1" ,"list");
+        redisTemplate.opsForList().rightPopAndLeftPush("list1" ,"list");
+        redisTemplate.opsForList().rightPopAndLeftPush("list1" ,"list");
+        //更新元素
+        redisTemplate.opsForList().set("list" ,0,"新元素");
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
         // 获取请求行的相关信息
         Object viewNum = redisTemplate.opsForValue().get("viewListNum");
+
 
         out.println("访问参数 ："+key +"  | 访问次数："+viewNum+"<br>");
         out.println("HttpServletRequest对象获取请求行信息方法示例：<br>");
@@ -105,6 +108,103 @@ public class TestController {
         list.forEach((e)->  out.println("redisList => key : "+ key+" | value:"+ e + "<br>"));
 
 //        return "收到:"+key +" 访问查看redisList次数 ："+viewNum ;
+    }
+
+
+    @GetMapping("/redisSet")
+    public void redisSet(@RequestParam(value = "str") String key,HttpServletRequest request,HttpServletResponse response) throws Exception{
+        redisTemplate.opsForValue().setIfAbsent("viewSetNum",0);
+        redisTemplate.opsForValue().increment("viewSetNum");
+
+        redisTemplate.opsForSet().add("set2","mm1","mm2","mm3","mm4","mm5","mm6","mm7");
+
+
+
+
+        response.setContentType("text/html;charset=utf-8");
+        PrintWriter out = response.getWriter();
+        // 获取请求行的相关信息
+        Object viewNum = redisTemplate.opsForValue().get("viewSetNum");
+        out.println("redisSet访问参数 ："+key +"  | redisSet访问次数："+viewNum+"<br>");
+        out.println("HttpServletRequest对象获取请求行信息方法示例：<br>");
+        out.println("getMethod : " + request.getMethod() + "<br>");
+        out.println("getRequestURI : " + request.getRequestURI() + "<br>");
+        out.println("getQueryString:" + request.getQueryString() + "<br>");
+        out.println("getProtocol : " + request.getProtocol() + "<br>");
+        out.println("getContextPath:" + request.getContextPath() + "<br>");
+        out.println("getServletPath : " + request.getServletPath() + "<br>");
+        out.println("getRemoteAddr : " + request.getRemoteAddr() + "<br>");
+        out.println("getRemoteHost : " + request.getRemoteHost() + "<br>");
+        out.println("getRemotePort : " + request.getRemotePort() + "<br>");
+        out.println("getLocalAddr : " + request.getLocalAddr() + "<br>");
+        out.println("getLocalName : " + request.getLocalName() + "<br>");
+        out.println("getLocalPort : " + request.getLocalPort() + "<br>");
+        out.println("getServerName : " + request.getServerName() + "<br>");
+        out.println("getServerPort : " + request.getServerPort() + "<br>");
+        out.println("getScheme : " + request.getScheme() + "<br>");
+        out.println("getRequestURL : " + request.getRequestURL() + "<br>");
+
+        Collection<Object> list = redisTemplate.opsForSet().members(key);
+        list.forEach((e)->  out.println("redisSet => key : "+ key+" | value:"+ e + "<br>"));
+
+    }
+
+    @GetMapping("/redisHash")
+    public void redisHash(@RequestParam(value = "str") String key,HttpServletRequest request,HttpServletResponse response) throws Exception{
+        redisTemplate.opsForValue().setIfAbsent("viewHashNum",0);
+        redisTemplate.opsForValue().increment("viewHashNum");
+
+        redisTemplate.opsForHash().putAll(key,new HashMap<String ,String >(){{
+            put("name","litianjin");
+            put("age","18");
+            put("email","163.com");
+            put("addr","china");
+            put("city","shenyang");
+            put("money","10w");
+        }});
+
+        //开始事务
+        redisTemplate.multi();
+        redisTemplate.opsForValue().set("num1",0);
+        redisTemplate.opsForValue().set("num2",11);
+        redisTemplate.opsForValue().set("num3",22);
+        //监视事务中的运行的key s是否变化 ,需要多线程执行
+        redisTemplate.watch("num2");
+        //执行事务
+        redisTemplate.exec();
+        response.setContentType("text/html;charset=utf-8");
+        PrintWriter out = response.getWriter();
+        // 获取请求行的相关信息
+        Object viewNum = redisTemplate.opsForValue().get("viewHashNum");
+        out.println("redisHash访问参数 ："+key +"  | redisHash访问次数："+viewNum+"<br>");
+        out.println("HttpServletRequest对象获取请求行信息方法示例：<br>");
+        out.println("getMethod : " + request.getMethod() + "<br>");
+        out.println("getRequestURI : " + request.getRequestURI() + "<br>");
+        out.println("getQueryString:" + request.getQueryString() + "<br>");
+        out.println("getProtocol : " + request.getProtocol() + "<br>");
+        out.println("getContextPath:" + request.getContextPath() + "<br>");
+        out.println("getServletPath : " + request.getServletPath() + "<br>");
+        out.println("getRemoteAddr : " + request.getRemoteAddr() + "<br>");
+        out.println("getRemoteHost : " + request.getRemoteHost() + "<br>");
+        out.println("getRemotePort : " + request.getRemotePort() + "<br>");
+        out.println("getLocalAddr : " + request.getLocalAddr() + "<br>");
+        out.println("getLocalName : " + request.getLocalName() + "<br>");
+        out.println("getLocalPort : " + request.getLocalPort() + "<br>");
+        out.println("getServerName : " + request.getServerName() + "<br>");
+        out.println("getServerPort : " + request.getServerPort() + "<br>");
+        out.println("getScheme : " + request.getScheme() + "<br>");
+        out.println("getRequestURL : " + request.getRequestURL() + "<br>");
+        out.println("=================================================================<br>");
+
+        Map<Object, Object> entries = redisTemplate.opsForHash().entries(key);
+        Iterator<Object> iterator = entries.keySet().iterator();
+        while (iterator.hasNext()){
+            Object feild = iterator.next();
+            Object value = entries.get(feild);
+            out.println("key : " +key +" | feild :" + feild+" | value :" + value+ "<br>");
+
+        }
+
     }
 
 }

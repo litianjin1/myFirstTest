@@ -11,9 +11,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import redis.clients.jedis.Jedis;
 
 import javax.annotation.Resource;
+import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  *
@@ -25,6 +27,27 @@ public class RedisTest {
     @Autowired
         private  RedisTemplate redisTemplate;
 
+
+    @Test
+    public void testStr(){
+
+        String encode = URLEncoder.encode("dataId=20810&orderId=28326");
+        System.out.println(encode);
+
+        String name = UUID.randomUUID().toString().replace("-","");
+        String name2 = UUID.randomUUID().toString().replace("-","").substring(16,32);
+
+        System.out.println(name);
+        System.out.println(name2);
+
+        String s = "ssss";
+        String ss = "ssss,aasa,dfdfd";
+        String[] split1= s.split(",");
+        String[] split2 = ss.split(",");
+
+        System.out.println(split1);
+        System.out.println(split2);
+    }
         @Test
         public void testRedisTemplate() {
 //            String orderNum= "F211124";

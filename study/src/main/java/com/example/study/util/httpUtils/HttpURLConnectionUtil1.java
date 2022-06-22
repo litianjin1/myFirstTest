@@ -1,4 +1,4 @@
-package com.example.study.util;
+package com.example.study.util.httpUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +14,34 @@ import java.security.cert.X509Certificate;
 /**
  * 通用http发送方法
  *
+ * 一 、 通过JDK网络类Java.net.HttpURLConnection；
+ * GET:
+ * 1、创建远程连接
+ * 2、设置连接方式（get、post、put。。。）
+ * 3、设置连接超时时间
+ * 4、设置响应读取时间
+ * 5、发起请求
+ * 6、获取请求数据
+ * 7、关闭连接
+ *
+ * POST:
+ * 1、创建远程连接
+ * 2、设置连接方式（get、post、put。。。）
+ * 3、设置连接超时时间
+ * 4、设置响应读取时间
+ * 5、当向远程服务器传送数据/写数据时，需要设置为true（setDoOutput）
+ * 6、当前向远程服务读取数据时，设置为true，该参数可有可无（setDoInput）
+ * 7、设置传入参数的格式:（setRequestProperty）
+ * 8、设置鉴权信息：Authorization:（setRequestProperty）
+ * 9、设置参数
+ * 10、发起请求
+ * 11、获取请求数据
+ * 12、关闭连接
+ *
  * @author ruoyi
  */
-public class HttpUtils {
-    private static final Logger log = LoggerFactory.getLogger(HttpUtils.class);
+public class HttpURLConnectionUtil1 {
+    private static final Logger log = LoggerFactory.getLogger(HttpURLConnectionUtil1.class);
 
     /**
      * 向指定 URL 发送GET方法的请求
