@@ -17,6 +17,6 @@ public class TestException {
     }
 
     public  static void test() throws Myexception{
-        throw  new Myexception("hello","金钱");
+        throw  new Myexception("hello","金钱","金钱转化错误" );
     }
 }

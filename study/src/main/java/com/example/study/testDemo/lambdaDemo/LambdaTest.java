@@ -1,7 +1,7 @@
 package com.example.study.testDemo.lambdaDemo;
 
 import com.example.study.facade.Car;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.List;

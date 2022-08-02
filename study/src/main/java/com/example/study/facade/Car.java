@@ -11,6 +11,8 @@ public class Car implements InitializingBean, DisposableBean {
     private Double price;
     private Integer size;
 
+
+
     public Car(){
         System.out.println("Car .... constructor.....");
     }

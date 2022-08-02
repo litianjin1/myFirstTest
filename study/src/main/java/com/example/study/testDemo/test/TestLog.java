@@ -2,8 +2,8 @@ package com.example.study.testDemo.test;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Aspect;
-import org.junit.Test;
 import org.springframework.stereotype.Component;
+import org.testng.annotations.Test;
 
 import java.util.regex.Pattern;
 

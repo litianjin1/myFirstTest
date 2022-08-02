@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyListener2{
 
-    @Async
+/*    @Async
     @EventListener(MyEvent2.class)
     public void onApplicationEvent(MyEvent2 event) {
         try {
@@ -22,9 +22,9 @@ public class MyListener2{
             e.printStackTrace();
         }
         log.info("springboot注解版事件监听，111监听器收到信息："+event.getMsg());
+    }*/
+    @EventListener(MyEvent2.class)
+    public void onApplicationEvent2(MyEvent2 event) {
+        log.info("springboot注解版事件监听，2222监听器收到信息："+event.getMsg());
     }
-//    @EventListener(MyEvent2.class)
-//    public void onApplicationEvent2(MyEvent2 event) {
-//        log.info("springboot注解版事件监听，2222监听器收到信息："+event.getMsg());
-//    }
 }

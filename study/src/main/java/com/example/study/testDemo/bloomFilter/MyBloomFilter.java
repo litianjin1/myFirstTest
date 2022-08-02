@@ -1,7 +1,13 @@
 package com.example.study.testDemo.bloomFilter;
 
+import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
+import java.util.Random;
 
 public class MyBloomFilter {
     //后面hash函数会用到，用来生成不同的hash值，可以随便给，但别给奇数
@@ -50,19 +56,19 @@ public class MyBloomFilter {
 
 
 
-    public static void main(String[] args) {
-        MyBloomFilter myNewBloomFilter = new MyBloomFilter();
-        myNewBloomFilter.push("张学友");
-        myNewBloomFilter.push("郭德纲");
-        myNewBloomFilter.push("蔡徐鸡");
-        myNewBloomFilter.push(666);
-        System.out.println(myNewBloomFilter.contain("张学友"));//true
-        System.out.println(myNewBloomFilter.contain("张学友 "));//false
-        System.out.println(myNewBloomFilter.contain("张学友1"));//false
-        System.out.println(myNewBloomFilter.contain("郭德纲"));//true
-        System.out.println(myNewBloomFilter.contain("蔡徐老母鸡"));//false
-        System.out.println(myNewBloomFilter.contain(666));//true
-        System.out.println(myNewBloomFilter.contain(888));//false
-    }
+//    public static void main(String[] args) {
+//        MyBloomFilter myNewBloomFilter = new MyBloomFilter();
+//        myNewBloomFilter.push("张学友");
+//        myNewBloomFilter.push("郭德纲");
+//        myNewBloomFilter.push("蔡徐鸡");
+//        myNewBloomFilter.push(666);
+//        System.out.println(myNewBloomFilter.contain("张学友"));//true
+//        System.out.println(myNewBloomFilter.contain("张学友 "));//false
+//        System.out.println(myNewBloomFilter.contain("张学友1"));//false
+//        System.out.println(myNewBloomFilter.contain("郭德纲"));//true
+//        System.out.println(myNewBloomFilter.contain("蔡徐老母鸡"));//false
+//        System.out.println(myNewBloomFilter.contain(666));//true
+//        System.out.println(myNewBloomFilter.contain(888));//false
+//    }
 
 }

@@ -1,6 +1,5 @@
 package com.example.study.util;
 
-
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 
@@ -18,15 +17,9 @@ public class MessageUtils
      * @param args 参数
      * @return 获取国际化翻译值
      */
-/*    public static String message(String code, Object... args)
+    public static String message(String code, Object... args)
     {
         MessageSource messageSource = SpringUtils.getBean(MessageSource.class);
         return messageSource.getMessage(code, args, LocaleContextHolder.getLocale());
-    }*/
-
-    public static void main(String[] args) {
-        String memberType = "5";
-        String[] splitType = memberType.split(",");
-        System.out.println(splitType);
     }
 }

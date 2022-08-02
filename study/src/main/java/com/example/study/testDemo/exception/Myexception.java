@@ -4,7 +4,9 @@ public class Myexception extends Exception {
     private String name;
     private String money;
 
-    public Myexception(String name, String money) {
+
+    public Myexception(String name, String money,String msg ) {
+        super(msg);
         this.name = name;
         this.money = money;
     }

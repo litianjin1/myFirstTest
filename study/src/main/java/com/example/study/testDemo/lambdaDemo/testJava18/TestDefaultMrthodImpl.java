@@ -1,7 +1,7 @@
 package com.example.study.testDemo.lambdaDemo.testJava18;
 
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class TestDefaultMrthodImpl implements TestDefaultMethod {
 

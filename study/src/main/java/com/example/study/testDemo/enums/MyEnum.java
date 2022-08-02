@@ -1,12 +1,14 @@
 package com.example.study.testDemo.enums;
 
 public enum  MyEnum {
-    RED("红色",1),GREEN("绿色",2),BLACK("黑色",3),BLUE("蓝色",4);
+    RED("红色",1,"热情"),GREEN("绿色",2,"自然"),BLACK("黑色",3,"厚重"),BLUE("蓝色",4,"大海");
     private String color;
     private int index;
-     MyEnum(String color,int index) {
+    private String desc;
+     MyEnum(String color,int index,String desc) {
         this.color =color;
         this.index = index;
+        this.desc = desc;
     }
 
     MyEnum() {
@@ -40,6 +42,7 @@ public enum  MyEnum {
         return "MyEnum{" +
                 "color='" + color + '\'' +
                 ", index=" + index +
+                ", desc='" + desc + '\'' +
                 '}';
     }
 }

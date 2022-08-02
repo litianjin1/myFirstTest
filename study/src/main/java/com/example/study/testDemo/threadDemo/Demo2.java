@@ -6,43 +6,130 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Demo2 {
-    private static AtomicInteger list = new AtomicInteger(0);
+public  class Demo2 {
+
+    private static volatile Boolean flag = false;
 
     public static void main(String[] args) {
-
-//        new ThreadPoolExecutor();
-        int i1 = Runtime.getRuntime().availableProcessors();
-        System.out.println(i1);
-
-        int num = 999999999;
-        System.out.println("num:"+num);
-
-        Integer numDD = new Integer("99");
-        System.out.println("numDD:"+numDD);
-
-        num =numDD;
-        System.out.println("num:"+num);
-
-        numDD = 1;
-        System.out.println("numDD:"+numDD);
-
-//        Demo2 demo =new Demo2();
-//        new Thread(()->{
-//            for (int i=1;i<=10000;i++){
-//                list.set(list.addAndGet(i));
-//                System.out.print(Thread.currentThread().getName()+":");
-//                System.out.println(demo.list);
-//            }
-//
-//        }).start();
-//
-//        new Thread(()->{
-//            for (int i=1;i<=10000;i++){
-//                list.set(list.addAndGet(i));
-//                System.out.print(Thread.currentThread().getName()+":");
-//                System.out.println(demo.list);
-//            }
-//        }).start();
+//        test01();
+//        test02();
+        Demo2 demo2 = new Demo2();
+        demo2.test03();
     }
+
+    //join
+    public static void test01(){
+        Runnable runnable = new Runnable(){
+            @Override
+            public void run() {
+                for(int y =1 ;y<=6;y++){
+                    System.out.println("开始学习"+y+"年！");
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if(y==4){
+                        System.out.println("学有所成毕业了！！");
+                        break;
+                    }
+                }
+            }
+        };
+        Thread threadA = new Thread(runnable);
+
+        Thread threadB = new Thread(() -> {
+            try {
+                threadA.join();
+                System.out.println("开始找工作了");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        threadB.start();
+        threadA.start();
+
+    }
+
+    //volatila
+    public static void test02(){
+
+        Thread threadA = new Thread(()->{
+            while (true){
+                if(!flag){
+                    for(int y =1 ;y<=6;y++){
+                        System.out.println("开始学习"+y+"年！");
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        if(y==4){
+                            System.out.println("学有所成毕业了！！");
+                            flag = true;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+
+        });
+
+        Thread threadB = new Thread(() -> {
+            while (true){
+                if(flag){
+                    System.out.println("开始找工作了");
+                    break;
+                }
+            }
+
+        });
+
+        threadB.start();
+        threadA.start();
+
+    }
+
+    //synchronized   notify  wait
+    public void test03(){
+
+        Thread threadA = new Thread(()->{
+
+            synchronized (this){
+                for(int y =1 ;y<=6;y++){
+                    System.out.println("开始学习"+y+"年！");
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if(y==4){
+                        System.out.println("学有所成毕业了！！");
+                        notify();
+                        break;
+                    }
+                }
+            }
+        });
+// cannot be referenced from a static context
+
+        Thread threadB = new Thread(() -> {
+            synchronized(this){
+                try {
+                    wait();
+                    System.out.println("开始找工作了");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+
+        threadB.start();
+        threadA.start();
+
+    }
+
 }

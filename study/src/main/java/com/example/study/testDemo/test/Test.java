@@ -1,5 +1,6 @@
 package com.example.study.testDemo.test;
 
+import java.text.NumberFormat;
 import java.util.*;
 
 import java.util.List;
@@ -12,21 +13,21 @@ public class Test {
         b3=(b1+b2);
         System.out.println(b3+b6);*/
 
-
+      //上界
         List<? extends Father> list1 = new ArrayList<Father>();
         List<? extends Father> list2 = new ArrayList<Son>();
         List<? extends Father> list3 = new ArrayList<LeiFeng>();
-//        list1.add(new Son());
-//        list1.add(new Father());
+/*        list1.add(new Son());
+        list1.add(new Father());*/
         Father father = list1.get(0);//读取出来的东西只能存放在Father或它的基类里。
         Object object = list1.get(0);//读取出来的东西只能存放在Father或它的基类里。
         Human human = list1.get(0);//读取出来的东西只能存放在Father或它的基类里。
 
-
+        //下届
         List<? super Father> list = new ArrayList<>();
-//        list.add(new Father());
+        list.add(new Father());
 //        list.add(new Human());//compile error
-//        list.add(new Son());
+        list.add(new Son());
 //        Father person1 = list.get(0);//compile error
 //        Son son = list.get(0);//compile error
         Object object1 = list.get(0);

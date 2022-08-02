@@ -1,0 +1,9 @@
+<?xml version = "1.0" encoding = "GB2312"?>
+<exg name="excelId" version="1.0" file-type="excel">
+    <excel id="ACCOUNT" consume="com.example.study.testDemo.alanpoiExcel.CosumeHandle">
+        <sheet index="0" row-start="1" column-start="0" vo="com.example.study.facade.Districts">
+            <column name="±àºÅ" offset="1">id</column>
+            <column name="ÉÏ¼¶±àºÅ" offset="2">pid</column>
+        </sheet>
+    </excel>
+</exg>

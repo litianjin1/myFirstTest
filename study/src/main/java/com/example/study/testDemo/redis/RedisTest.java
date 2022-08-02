@@ -1,13 +1,13 @@
 package com.example.study.testDemo.redis;
 
 import com.netflix.discovery.converters.Auto;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.testng.annotations.Test;
 import redis.clients.jedis.Jedis;
 
 import javax.annotation.Resource;

@@ -1,7 +1,8 @@
 package com.example.study.testDemo.lambdaDemo.java8Annotation;
 
 
-import org.junit.Test;
+
+import org.testng.annotations.Test;
 
 import java.lang.annotation.Annotation;
 

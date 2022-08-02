@@ -8,7 +8,7 @@ import com.example.study.testDemo.reflectionAndAnnotation.MyAnnotation.MyClassAn
 
 public class ParseAnnotation {
     /**
-     * 解析方法注解
+
      *
      * @param clazz
      */

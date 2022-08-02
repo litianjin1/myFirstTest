@@ -73,6 +73,6 @@ public class TestList {
         }};
 
 
-        List<User> users = Stream.of(new User("张三","1",15,new BigDecimal("1234.56"),new Timestamp(System.currentTimeMillis()))).collect(Collectors.toList());
+        List<User> users = Stream.of(new User("张三","1",15,new BigDecimal("1234.56"),new Timestamp(System.currentTimeMillis()),"nickname")).collect(Collectors.toList());
     }
 }
