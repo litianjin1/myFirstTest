@@ -30,6 +30,8 @@ public class RedisTest {
 
     @Test
     public void testStr(){
+        String s12112 = "\u8bf7\u6c42\u6210\u529f";
+        System.out.println(s12112);
 
         String encode = URLEncoder.encode("dataId=20810&orderId=28326");
         System.out.println(encode);

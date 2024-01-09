@@ -23,7 +23,6 @@ public class TestStatic {
 //3、静态内部类中的变量被调用时：
 
     public static void main(String[] args) {
-        s
         System.out.println("静态内部类加载时间：" + StaticClass.InnerStaticClass.INNER_STATIC_DATE);
     }
 }

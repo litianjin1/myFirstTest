@@ -3,15 +3,38 @@ package com.example.study.testDemo.streamDemo;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class TestDemoTwo {
     public static void main(String[] args) {
+        tetsMaxMinReduce();
         testSplitStr();
         testBuffer();
         testStatic();
     }
+
+    public static void tetsMaxMinReduce(){
+        List<String> list = Arrays.asList("adnm", "admmt", "pot", "xbangd", "weoujgsd");
+
+        Optional<String> max = list.stream().max(Comparator.comparing(String::length));
+        System.out.println("最长的字符串：" + max.get());
+
+
+        List<Integer> list1 = Arrays.asList(7, 6, 9, 4, 11, 6);
+
+        // 自然排序
+        Optional<Integer> max1 = list1.stream().max(Integer::compareTo);
+        // 自定义排序（从大到小排序）
+        Optional<Integer> max2 = list1.stream().max((o1, o2) -> o2 - o1);
+        System.out.println("自然排序的最大值：" + max1.get());
+        System.out.println("自定义排序的最大值：" + max2.get());
+    }
+
     /*
      * @description -- stream的静态方法
      * @author -- ltj
@@ -20,6 +43,8 @@ public class TestDemoTwo {
      * @return -- void
      */
     public static  void testStatic(){
+
+
         Stream<Integer> stream = Stream.of(1,2,3,4,5,6);
         stream.forEach(System.out::println);
 
@@ -28,7 +53,7 @@ public class TestDemoTwo {
          * iterate()方法，第一个参数是初始值，第二个参数是一个方法，对每个元素进行操作得到新值
          * 这个方法获取的是无限流，需要借助limit() 方法来截取
          */
-        Stream<Integer> stream2 = Stream.iterate(1, (x) -> x + 2).limit(6);
+        Stream<Integer> stream2 = Stream.iterate(0, (x) -> x + 2).limit(7);
         stream2.forEach(System.out::println); // 0 2 4 6 8 10
         System.out.println("============================================");
         /**

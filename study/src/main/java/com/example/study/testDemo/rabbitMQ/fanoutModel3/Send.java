@@ -2,6 +2,7 @@ package com.example.study.testDemo.rabbitMQ.fanoutModel3;
 
 
 import com.example.study.testDemo.rabbitMQ.ConnectionUtil;
+import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 
@@ -30,7 +31,7 @@ public class Send {
         // 获取通道
         Channel channel = connection.createChannel();
         // 声明exchange，指定类型为fanout
-        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
         
         // 消息内容
         String message = "注册成功！！";

@@ -2,6 +2,7 @@ package com.example.study.testDemo.streamDemo;
 
 import com.example.study.testDemo.TestUtil.CommonUseObject;
 import com.example.study.facade.User;
+import org.testng.annotations.Test;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -92,5 +93,16 @@ public class TestStream {
         System.out.println("空字符串的数量为: " + count);
     }
 
+    @Test
+    public void testMax(){
+        List<Integer> list = Arrays.asList(7, 6, 9, 4, 11, 6);
+
+        // 自然排序
+        Optional<Integer> max = list.stream().max(Integer::compareTo);
+        // 自定义排序（从大到小排序）
+        Optional<Integer> max2 = list.stream().max((o1, o2) -> o2 - o1);
+        System.out.println("自然排序的最大值：" + max.get());
+        System.out.println("自定义排序的最大值：" + max2.get());
+    }
 
 }

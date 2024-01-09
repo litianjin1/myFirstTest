@@ -2,6 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>javaWeb-demo</module>
+    </modules>
     <parent>
         <!--项目名 反写公司网址+项目名-->
         <groupId>com.example</groupId>
@@ -14,7 +17,7 @@
     <groupId>com.example</groupId>
     <artifactId>study</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>study</name>
     <description>Demo project for Spring Boot</description>

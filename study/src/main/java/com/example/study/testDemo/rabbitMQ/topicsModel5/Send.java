@@ -21,7 +21,7 @@ import com.rabbitmq.client.MessageProperties;
  */
 public class Send {
     private final static String EXCHANGE_NAME = "test_topic_exchange";
- 
+
     public static void main(String[] argv) throws Exception {
         // 获取到连接
         Connection connection = ConnectionUtil.getConnection();
@@ -35,7 +35,7 @@ public class Send {
         String message = "这是一只行动迅速的橙色的兔子";
         String message2 = "这是一只懒惰的乌龟";
         // 发送消息，并且指定routing key为：quick.orange.rabbit
-        channel.basicPublish(EXCHANGE_NAME, "quick.orange.rabbit", null, message.getBytes());
+        channel.basicPublish(EXCHANGE_NAME, "quick.orange.rabbit", MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
 
         //2222 避免消息丢失要将 消息，交换机，队列都持久化，此处是消息持久化   durable : true
 //        channel.basicPublish(EXCHANGE_NAME, "lazy.pink.rabbitqq", MessageProperties.PERSISTENT_TEXT_PLAIN, message2.getBytes());
