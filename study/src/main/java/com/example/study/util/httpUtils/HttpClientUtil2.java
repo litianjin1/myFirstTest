@@ -1,13 +1,13 @@
 package com.example.study.util.httpUtils;
- 
+
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
- 
+
 import java.io.IOException;
- 
+
 /**
  * 二、 通过apache common封装好的HttpClient
  * 1.生成一个HttpClient对象并设置相应的参数；
@@ -94,7 +94,7 @@ public class HttpClientUtil2 {
         }
         return response;
     }
- 
+
     /**
      * post请求
      * @param url
@@ -104,7 +104,7 @@ public class HttpClientUtil2 {
     public static String doPost(String url, JSONObject json){
         HttpClient httpClient = new HttpClient();
         PostMethod postMethod = new PostMethod(url);
- 
+
         postMethod.addRequestHeader("accept", "*/*");
         postMethod.addRequestHeader("connection", "Keep-Alive");
         //设置json格式传送
@@ -113,7 +113,7 @@ public class HttpClientUtil2 {
         postMethod.addRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.36");
         //添加请求参数
         postMethod.addParameter("commentId", json.getString("commentId"));
- 
+
         String res = "";
         try {
             int code = httpClient.executeMethod(postMethod);
@@ -126,13 +126,13 @@ public class HttpClientUtil2 {
         }
         return res;
     }
- 
+
     public static void main(String[] args) {
         System.out.println(doGet("http://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel=13026194071", "GBK"));
         System.out.println("-----------分割线------------");
         System.out.println("-----------分割线------------");
         System.out.println("-----------分割线------------");
- 
+
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("commentId", "13026194071");
         System.out.println(doPost("http://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel=13026194071", jsonObject));

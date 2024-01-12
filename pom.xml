@@ -65,6 +65,7 @@
         <module>eureka</module>
         <module>gateway</module>
         <module>xxl-job</module>
+        <module>EsTest</module>
     </modules>
 
     <!--依賴管理-->
